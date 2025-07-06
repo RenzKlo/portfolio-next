@@ -11,6 +11,14 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.featured);
 
@@ -20,10 +28,10 @@ const Projects: React.FC = () => {
     setIsTransitioning(true);
     setFilter(newFilter);
     
-    // Allow time for animation to complete
+    // Allow time for animation to complete - faster on mobile
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 400);
+    }, isMobile ? 200 : 400);
   };
 
   const openModal = (project: Project) => {
@@ -283,26 +291,29 @@ const Projects: React.FC = () => {
             )}
           </AnimatePresence>
 
-          {/* Grid with smooth height transitions */}
+          {/* Grid with smooth height transitions and better mobile breakpoints */}
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             animate={{ height: "auto" }}
             transition={{ 
-              layout: { duration: 0.5, ease: "easeInOut" },
-              height: { duration: 0.5, ease: "easeInOut" }
+              layout: { duration: isMobile ? 0.3 : 0.5, ease: "easeInOut" },
+              height: { duration: isMobile ? 0.3 : 0.5, ease: "easeInOut" }
             }}
+            style={{ willChange: isMobile ? 'auto' : 'transform' }}
           >
             <AnimatePresence mode="sync">
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group"
+                  className={`bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden cursor-pointer group transition-shadow ${
+                    isMobile ? '' : 'hover:shadow-xl'
+                  }`}
                   onClick={() => openModal(project)}
                   initial={{ 
                     opacity: 0, 
-                    scale: 0.95,
-                    y: 20
+                    scale: isMobile ? 0.98 : 0.95,
+                    y: isMobile ? 10 : 20
                   }}
                   animate={{ 
                     opacity: 1, 
@@ -315,15 +326,14 @@ const Projects: React.FC = () => {
                     y: -20
                   }}
                   transition={{ 
-                    duration: 0.3,
-                    delay: index * 0.05,
+                    duration: isMobile ? 0.2 : 0.3,
+                    delay: isMobile ? index * 0.03 : index * 0.05,
                     ease: "easeOut"
                   }}
-                  whileHover={{ 
+                  whileHover={isMobile ? {} : { 
                     y: -10, 
                     scale: 1.02,
-                    rotateY: 5,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.2 }
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
