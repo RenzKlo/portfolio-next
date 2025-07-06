@@ -18,7 +18,7 @@ export const personalInfo: PersonalInfo = {
     "I started coding in high school, where I first got into robotics and automation. That sparked my curiosity about how software can control and interact with the real world. Since then, I’ve been interested in building systems that combine logic, structure, and creativity.",
     "During college, I worked on various projects ranging from mobile and web apps to backend services. I gained hands-on experience using tools like Flutter, Flask, and MongoDB, and developed a strong preference for backend development, where I can focus on clean architecture and performance.",
     "I also explored AI-related topics such as chatbots and LLMs, often building small experiments to understand how they work. Presenting my work in research settings helped me develop confidence in explaining technical ideas and defending design decisions.",
-    "Outside of coding, I enjoy learning new tools, reading about software architecture, and occasionally contributing to open-source or helping peers troubleshoot code. I’m committed to continuous improvement and growing under the mentorship of experienced developers.",
+    "Outside of coding, I enjoy learning new tools and reading about software architecture. Currently learning more about Data Engineering and pipelines. I’m committed to continuous improvement and growing under the mentorship of experienced developers.",
   ],
   quickInfoTitle: "Quick Info",
   availabilityStatus: "For new opportunities",
@@ -283,7 +283,7 @@ export const education: Education[] = [
     ],
     thesis: {
       title:
-        "PubLink: A Commuter Guiding System on Public UtilityJeepney Routes using A* Search Algorithm with Graph Pruning",
+        "PubLink: A Commuter Guiding System on Public Utility Jeepney Routes using A* Search Algorithm with Graph Pruning",
       description:
         "Developing an intelligent navigation system using pathfinding algorithms to optimize public transportation routes and provide real-time commuter guidance.",
     },
