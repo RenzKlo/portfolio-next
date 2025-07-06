@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://renzklo.com'),
   title: "Kent Daria - Full Stack Developer",
   description: "Passionate developer with expertise in AI, Mobile, and Web Technologies. I love creating software systems and bringing ideas to life through code.",
   keywords: "developer, web development, react, nextjs, typescript, portfolio",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kent Daria - Full Stack Developer",
     description: "Passionate developer with expertise in modern web technologies.",
-    url: "https://yourportfolio.com",
+    url: "https://renzklo.com",
     siteName: "Kent Daria Portfolio",
     images: [
       {

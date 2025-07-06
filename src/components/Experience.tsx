@@ -1,10 +1,19 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { experience, personalInfo } from '@/data/portfolio';
 
 const Experience: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -31,23 +40,24 @@ const Experience: React.FC = () => {
 
   return (
     <section id="experience" className="py-20 mt-0 bg-white dark:bg-gray-900 relative">
-      {/* Enhanced Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating Timeline & Career Elements */}
-        <motion.div
-          className="absolute w-6 h-6 bg-blue-300/30 dark:bg-blue-500/20 rounded-full"
-          animate={{
-            x: [0, 40, 0],
-            y: [0, -60, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ top: '20%', left: '15%' }}
-        />
+      {/* Simplified floating elements for mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating Timeline & Career Elements */}
+          <motion.div
+            className="absolute w-6 h-6 bg-blue-300/30 dark:bg-blue-500/20 rounded-full"
+            animate={{
+              x: [0, 40, 0],
+              y: [0, -60, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ top: '20%', left: '15%' }}
+          />
         
         {/* Floating Briefcase */}
         <motion.div
@@ -235,7 +245,8 @@ const Experience: React.FC = () => {
         >
           🏢
         </motion.div>
-      </div>
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
