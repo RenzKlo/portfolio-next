@@ -72,7 +72,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const typingAnimationTexts: string[] = [
-  "Full Stack Developement",
+  "Full Stack Development",
   "Mobile and Web",
   "AI/ML Development",
   "Agents",
