@@ -174,20 +174,20 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0 }}
           >
-            {personalInfo.name.split('').map((char, index) => (
+            {personalInfo.name.split(' ').map((word, wordIndex) => (
               <motion.span
-                key={index}
-                className={`inline-block hero-char-${index % 10}`}
+                key={wordIndex}
+                className={`inline-block mr-3 hero-word-${wordIndex}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0 }}
                 whileHover={{
-                  scale: 1.2,
+                  scale: 1.1,
                   color: "#3b82f6",
                   transition: { duration: 0.2 }
                 }}
               >
-                {char === ' ' ? '\u00A0' : char}
+                {word}
               </motion.span>
             ))}
           </motion.h1>

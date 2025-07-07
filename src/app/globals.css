@@ -594,9 +594,6 @@ html {
   .contact-float-2,
   .contact-bubble-1,
   .contact-bubble-2,
-  .contact-icon-1,
-  .contact-icon-2,
-  .contact-icon-3,
   .contact-line-1,
   .contact-line-2,
   .contact-line-3,
@@ -649,4 +646,26 @@ html {
   .projects-grid {
     transition: height 0.3s ease-in-out;
   }
+}
+
+/* Hero section cursor styles - remove text cursor */
+.hero-name,
+.hero-word-0,
+.hero-word-1,
+.hero-word-2,
+.hero-word-3,
+.hero-title,
+.hero-title-gradient,
+.hero-typing,
+.hero-bio {
+  cursor: default;
+}
+
+/* Keep default cursor even on hover for hero text elements */
+.hero-name span:hover,
+.hero-word-0:hover,
+.hero-word-1:hover,
+.hero-word-2:hover,
+.hero-word-3:hover {
+  cursor: default;
 }
