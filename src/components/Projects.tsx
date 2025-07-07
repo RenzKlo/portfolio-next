@@ -85,65 +85,27 @@ const Projects: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Geometric Shapes */}
         <motion.div
-          className="absolute w-20 h-20 bg-gradient-to-br from-blue-300/20 to-purple-300/20 dark:from-blue-500/10 dark:to-purple-500/10"
+          className="absolute w-20 h-20 bg-gradient-to-br from-blue-300/20 to-purple-300/20 dark:from-blue-500/10 dark:to-purple-500/10 projects-triangle"
           style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', top: '15%', left: '10%' }}
-          animate={{
-            rotate: [0, 360],
-            x: [0, 60, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          transition={{ duration: 0 }}
         />
         
         <motion.div
-          className="absolute w-16 h-16 bg-gradient-to-br from-green-300/20 to-blue-300/20 dark:from-green-500/10 dark:to-blue-500/10 rounded-lg"
-          animate={{
-            rotate: [0, -180, -360],
-            x: [0, -50, 0],
-            y: [0, 80, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-16 h-16 bg-gradient-to-br from-green-300/20 to-blue-300/20 dark:from-green-500/10 dark:to-blue-500/10 rounded-lg projects-square"
+          transition={{ duration: 0 }}
           style={{ top: '25%', right: '15%' }}
         />
         
         <motion.div
-          className="absolute w-12 h-12 bg-gradient-to-br from-yellow-300/20 to-orange-300/20 dark:from-yellow-500/10 dark:to-orange-500/10"
+          className="absolute w-12 h-12 bg-gradient-to-br from-yellow-300/20 to-orange-300/20 dark:from-yellow-500/10 dark:to-orange-500/10 projects-octagon"
           style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', bottom: '20%', left: '20%' }}
-          animate={{
-            rotate: [0, 90, 180, 270, 360],
-            x: [0, 40, 0],
-            y: [0, -60, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          transition={{ duration: 0 }}
         />
         
         {/* Floating Code Elements */}
         <motion.div
-          className="absolute w-24 h-24 bg-pink-300/20 dark:bg-pink-500/10 rounded-full"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 50, 0],
-            scale: [1, 0.7, 1],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-24 h-24 bg-pink-300/20 dark:bg-pink-500/10 rounded-full projects-circle"
+          transition={{ duration: 0 }}
           style={{ top: '60%', right: '5%' }}
         />
 
@@ -212,11 +174,11 @@ const Projects: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-16 projects-header"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0 }}
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             My Projects
@@ -294,12 +256,9 @@ const Projects: React.FC = () => {
           {/* Grid with smooth height transitions and better mobile breakpoints */}
           <motion.div 
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 projects-grid"
             animate={{ height: "auto" }}
-            transition={{ 
-              layout: { duration: isMobile ? 0.3 : 0.5, ease: "easeInOut" },
-              height: { duration: isMobile ? 0.3 : 0.5, ease: "easeInOut" }
-            }}
+            transition={{ duration: 0 }}
             style={{ willChange: isMobile ? 'auto' : 'transform' }}
           >
             <AnimatePresence mode="sync">

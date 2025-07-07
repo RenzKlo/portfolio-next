@@ -146,51 +146,20 @@ const Hero: React.FC = () => {
         <div className="text-center">
           {/* Avatar with Animation */}
           <motion.div 
-            className="relative w-48 h-48 mx-auto mb-8"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ 
-              duration: 1.2, 
-              ease: "backOut",
-              delay: 0.2 
-            }}
-            whileHover={{ 
-              scale: 1.1,
-              rotate: 10,
-              transition: { duration: 0.3 }
-            }}
+            className="relative w-48 h-48 mx-auto mb-8 hero-avatar"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0 }}
+            whileHover={{ scale: 1.1, rotate: 10 }}
           >
             <motion.div 
-              className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1"
-              animate={{
-                background: [
-                  "linear-gradient(45deg, #3b82f6, #8b5cf6)",
-                  "linear-gradient(45deg, #8b5cf6, #ec4899)",
-                  "linear-gradient(45deg, #ec4899, #f59e0b)",
-                  "linear-gradient(45deg, #f59e0b, #3b82f6)",
-                ]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear"
-              }}
+              className="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1 hero-avatar-gradient"
+              transition={{ duration: 0 }}
             >
               <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                 <motion.span 
-                  className="text-4xl font-bold text-gray-600 dark:text-gray-300"
-                  animate={{ 
-                    textShadow: [
-                      "0 0 0px #3b82f6",
-                      "0 0 20px #3b82f6",
-                      "0 0 0px #3b82f6"
-                    ]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+                  className="text-4xl font-bold text-gray-600 dark:text-gray-300 hero-initials"
+                  transition={{ duration: 0 }}
                 >
                   {personalInfo.name.split(' ').map(name => name[0]).join('')}
                 </motion.span>
@@ -200,26 +169,18 @@ const Hero: React.FC = () => {
 
           {/* Name and Title with Staggered Animation */}
           <motion.h1 
-            className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.5,
-              ease: "easeOut"
-            }}
+            className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-4 hero-name"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0 }}
           >
             {personalInfo.name.split('').map((char, index) => (
               <motion.span
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.5 + index * 0.05,
-                  ease: "backOut"
-                }}
-                className="inline-block"
+                className={`inline-block hero-char-${index % 10}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0 }}
                 whileHover={{
                   scale: 1.2,
                   color: "#3b82f6",
@@ -232,25 +193,14 @@ const Hero: React.FC = () => {
           </motion.h1>
 
           <motion.h2 
-            className="text-2xl sm:text-3xl text-blue-600 dark:text-blue-400 mb-2 font-medium"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: 0.8,
-              ease: "easeOut"
-            }}
+            className="text-2xl sm:text-3xl text-blue-600 dark:text-blue-400 mb-2 font-medium hero-title"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0 }}
           >
             <motion.span
-              animate={{
-                backgroundPosition: ["0%", "100%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_100%]"
+              className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_100%] hero-title-gradient"
+              transition={{ duration: 0 }}
             >
               {personalInfo.title}
             </motion.span>
@@ -258,10 +208,10 @@ const Hero: React.FC = () => {
 
           {/* Dynamic Typing Animation */}
           <motion.div
-            className="text-xl sm:text-2xl mb-6 h-8 flex items-center justify-center"
+            className="text-xl sm:text-2xl mb-6 h-8 flex items-center justify-center hero-typing"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0 }}
           >
             <TypingAnimation
               texts={typingAnimationTexts}
@@ -273,33 +223,33 @@ const Hero: React.FC = () => {
 
           {/* Bio with Typewriter Effect */}
           <motion.p 
-            className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed hero-bio"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0 }}
           >
             {personalInfo.bio}
           </motion.p>
 
           {/* CTA Buttons with Advanced Animations */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 hero-buttons"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0 }}
           >
             <MagneticHover strength={0.3}>
               <motion.button
                 onClick={() => scrollToSection('#projects')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl relative overflow-hidden"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl relative overflow-hidden hero-button-1"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.3)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.6 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0 }}
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 opacity-0"
@@ -313,15 +263,15 @@ const Hero: React.FC = () => {
             <MagneticHover strength={0.3}>
               <motion.button
                 onClick={() => scrollToSection('#contact')}
-                className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all relative overflow-hidden group"
+                className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all relative overflow-hidden group hero-button-2"
                 whileHover={{ 
                   scale: 1.05,
                   borderColor: "#8b5cf6"
                 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 1.6 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0 }}
               >
                 <motion.span
                   className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 origin-left"
@@ -334,10 +284,10 @@ const Hero: React.FC = () => {
 
           {/* Social Links with Staggered Animation */}
           <motion.div 
-            className="flex justify-center space-x-6"
+            className="flex justify-center space-x-6 hero-social"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.8 }}
+            transition={{ duration: 0 }}
           >
             {socialLinks.map((social, index) => (
               <motion.a
@@ -345,11 +295,11 @@ const Hero: React.FC = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className={`text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors hero-social-${index + 1}`}
                 aria-label={social.platform}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 1.8 + index * 0.1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0 }}
                 whileHover={{ 
                   scale: 1.2,
                   rotate: 10,

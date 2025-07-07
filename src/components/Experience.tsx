@@ -45,33 +45,15 @@ const Experience: React.FC = () => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Floating Timeline & Career Elements */}
           <motion.div
-            className="absolute w-6 h-6 bg-blue-300/30 dark:bg-blue-500/20 rounded-full"
-            animate={{
-              x: [0, 40, 0],
-              y: [0, -60, 0],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            className="absolute w-6 h-6 bg-blue-300/30 dark:bg-blue-500/20 rounded-full experience-float-1"
+            transition={{ duration: 0 }}
             style={{ top: '20%', left: '15%' }}
           />
         
         {/* Floating Briefcase */}
         <motion.div
-          className="absolute text-4xl opacity-10"
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, 15, -15, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-4xl opacity-10 experience-briefcase"
+          transition={{ duration: 0 }}
           style={{ top: '15%', right: '20%' }}
         >
           💼
@@ -79,17 +61,8 @@ const Experience: React.FC = () => {
 
         {/* Floating Chart */}
         <motion.div
-          className="absolute text-3xl opacity-10"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -20, 0],
-            rotate: [0, 10, 0],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-3xl opacity-10 experience-chart"
+          transition={{ duration: 0 }}
           style={{ bottom: '25%', left: '10%' }}
         >
           📈
@@ -97,16 +70,8 @@ const Experience: React.FC = () => {
 
         {/* Floating Calendar */}
         <motion.div
-          className="absolute text-2xl opacity-10"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-2xl opacity-10 experience-calendar"
+          transition={{ duration: 0 }}
           style={{ top: '60%', right: '15%' }}
         >
           📅
@@ -116,18 +81,8 @@ const Experience: React.FC = () => {
         {['🏆', '🎯', '⭐', '🚀'].map((icon, index) => (
           <motion.div
             key={icon}
-            className="absolute text-2xl opacity-10"
-            animate={{
-              y: [0, -25, 0],
-              rotate: [0, 360],
-              scale: [0.8, 1.2, 0.8],
-            }}
-            transition={{
-              duration: 8 + index * 2,
-              repeat: Infinity,
-              delay: index * 1.5,
-              ease: "easeInOut"
-            }}
+            className={`absolute text-2xl opacity-10 experience-achievement-${index + 1}`}
+            transition={{ duration: 0 }}
             style={{
               top: `${30 + index * 10}%`,
               right: `${80 + index * 3}%`,
@@ -141,17 +96,8 @@ const Experience: React.FC = () => {
         {[...Array(3)].map((_, index) => (
           <motion.div
             key={index}
-            className="absolute w-1 h-20 bg-gradient-to-b from-blue-300/20 to-purple-300/20 dark:from-blue-500/10 dark:to-purple-500/10 rounded-full"
-            animate={{
-              scaleY: [1, 1.3, 1],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 4 + index,
-              repeat: Infinity,
-              delay: index * 0.8,
-              ease: "easeInOut"
-            }}
+            className={`absolute w-1 h-20 bg-gradient-to-b from-blue-300/20 to-purple-300/20 dark:from-blue-500/10 dark:to-purple-500/10 rounded-full experience-connector-${index + 1}`}
+            transition={{ duration: 0 }}
             style={{
               top: `${20 + index * 20}%`,
               left: `${5 + index * 2}%`,
@@ -161,42 +107,19 @@ const Experience: React.FC = () => {
 
         {/* Orbiting Experience Points */}
         <motion.div
-          className="absolute w-32 h-32 border-2 border-blue-200/20 dark:border-blue-500/10 rounded-full"
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          className="absolute w-32 h-32 border-2 border-blue-200/20 dark:border-blue-500/10 rounded-full experience-orbit"
+          transition={{ duration: 0 }}
           style={{ top: '40%', right: '10%' }}
         >
           <motion.div
-            className="w-4 h-4 bg-blue-400/40 dark:bg-blue-500/30 rounded-full absolute"
-            animate={{
-              rotate: [0, -360],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            className="w-4 h-4 bg-blue-400/40 dark:bg-blue-500/30 rounded-full absolute experience-orbit-point"
+            transition={{ duration: 0 }}
             style={{ top: '-2px', left: '50%', transformOrigin: '8px 68px' }}
           />
         </motion.div>
         <motion.div
-          className="absolute w-4 h-4 bg-purple-300/30 dark:bg-purple-500/20 rounded-full"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 80, 0],
-            opacity: [0.3, 0.8, 0.3],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          className="absolute w-4 h-4 bg-purple-300/30 dark:bg-purple-500/20 rounded-full experience-float-2"
+          transition={{ duration: 0 }}
           style={{ top: '40%', right: '20%' }}
         />
         <motion.div
