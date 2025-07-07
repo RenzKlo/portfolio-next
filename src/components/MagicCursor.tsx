@@ -11,8 +11,24 @@ interface MousePosition {
 const MagicCursor: React.FC = () => {
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile device - disable cursor effects on touch devices
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Don't track mouse on mobile devices
+    if (isMobile) return;
+    
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       
@@ -29,7 +45,12 @@ const MagicCursor: React.FC = () => {
 
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
+  }, [isMobile]);
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div className="pointer-events-none fixed inset-0" style={{ zIndex: 30 }}>
@@ -71,34 +92,15 @@ const MagicCursor: React.FC = () => {
         />
       ))}
 
-      {/* Ripple effect */}
-      <motion.div
-        className="absolute border-2 border-blue-400/20 rounded-full"
-        animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
-          scale: [1, 1.5, 1],
+      {/* Ripple effect - replace continuous animation with CSS */}
+      <div
+        className="absolute border-2 border-blue-400/20 rounded-full cursor-ripple"
+        style={{ 
+          width: 40, 
+          height: 40,
+          left: mousePosition.x - 20,
+          top: mousePosition.y - 20,
         }}
-        transition={{
-          x: {
-            type: "spring",
-            damping: 20,
-            stiffness: 100,
-            mass: 0.5,
-          },
-          y: {
-            type: "spring",
-            damping: 20,
-            stiffness: 100,
-            mass: 0.5,
-          },
-          scale: {
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        style={{ width: 40, height: 40 }}
       />
     </div>
   );

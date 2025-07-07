@@ -18,10 +18,21 @@ interface Particle {
 const ParticleField: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     // Generate particles only on client side to avoid hydration mismatch
-    const generatedParticles = Array.from({ length: 20 }, (_, i) => ({
+    // Reduce particle count on mobile for better performance
+    const particleCount = window.innerWidth < 768 ? 8 : 20;
+    const generatedParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       size: Math.random() * 4 + 2,
       initialX: Math.random() * 100,
@@ -35,6 +46,8 @@ const ParticleField: React.FC = () => {
     
     setParticles(generatedParticles);
     setMounted(true);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Don't render particles until component is mounted to avoid hydration mismatch
@@ -44,30 +57,28 @@ const ParticleField: React.FC = () => {
         className="fixed inset-0 pointer-events-none overflow-hidden"
         style={{ zIndex: -1 }}
       >
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl particle-glow-1"
         />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/5 to-yellow-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/5 to-yellow-500/5 rounded-full blur-3xl particle-glow-2"
+        />
+      </div>
+    );
+  }
+
+  // On mobile, show simplified static version
+  if (isMobile) {
+    return (
+      <div 
+        className="fixed inset-0 pointer-events-none overflow-hidden"
+        style={{ zIndex: -1 }}
+      >
+        <div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl opacity-30"
+        />
+        <div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/5 to-yellow-500/5 rounded-full blur-3xl opacity-20"
         />
       </div>
     );
@@ -81,7 +92,7 @@ const ParticleField: React.FC = () => {
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-sm"
+          className="absolute bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-sm particle-float"
           style={{
             width: particle.size,
             height: particle.size,
@@ -95,40 +106,18 @@ const ParticleField: React.FC = () => {
             opacity: [0.3, 0.8, 0.3],
           }}
           transition={{
-            duration: particle.animationDuration,
-            delay: particle.animationDelay,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 0, // Disable Framer Motion animations for mobile performance
           }}
         />
       ))}
 
-      {/* Ambient glow effects */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      {/* Ambient glow effects - use CSS animations instead of Framer Motion */}
+      <div
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-3xl particle-glow-1"
       />
 
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/5 to-yellow-500/5 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.5, 0.2],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
+      <div
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/5 to-yellow-500/5 rounded-full blur-3xl particle-glow-2"
       />
     </div>
   );
