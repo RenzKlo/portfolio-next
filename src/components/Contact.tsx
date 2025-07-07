@@ -87,112 +87,52 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
       {/* Enhanced Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Communication Themed Floating Elements */}
+        {/* Communication Themed Floating Elements - Mobile Optimized */}
         <motion.div
-          className="absolute w-32 h-32 bg-blue-200/10 dark:bg-blue-500/5 rounded-full"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-32 h-32 bg-blue-200/10 dark:bg-blue-500/5 rounded-full contact-float-1"
+          transition={{ duration: 0 }}
           style={{ top: '20%', left: '10%' }}
         />
         
         <motion.div
-          className="absolute w-24 h-24 bg-purple-200/10 dark:bg-purple-500/5 rounded-full"
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 60, 0],
-            scale: [1, 0.8, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-24 h-24 bg-purple-200/10 dark:bg-purple-500/5 rounded-full contact-float-2"
+          transition={{ duration: 0 }}
           style={{ top: '30%', right: '15%' }}
         />
 
         {/* Message Bubbles */}
         <motion.div
-          className="absolute w-16 h-12 bg-green-200/15 dark:bg-green-500/8 rounded-xl"
-          animate={{
-            y: [0, -40, 0],
-            x: [0, 20, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-16 h-12 bg-green-200/15 dark:bg-green-500/8 rounded-xl contact-bubble-1"
+          transition={{ duration: 0 }}
           style={{ top: '50%', left: '20%' }}
         />
 
         <motion.div
-          className="absolute w-12 h-8 bg-blue-200/15 dark:bg-blue-500/8 rounded-lg"
-          animate={{
-            y: [0, 30, 0],
-            x: [0, -15, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute w-12 h-8 bg-blue-200/15 dark:bg-blue-500/8 rounded-lg contact-bubble-2"
+          transition={{ duration: 0 }}
           style={{ bottom: '30%', right: '25%' }}
         />
 
         {/* Floating Contact Icons */}
         <motion.div
-          className="absolute text-4xl opacity-5"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
+          className="absolute text-4xl opacity-5 contact-icon-1"
+          transition={{ duration: 0 }}
           style={{ top: '15%', right: '20%' }}
         >
           📧
         </motion.div>
 
         <motion.div
-          className="absolute text-3xl opacity-5"
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, 15, -15, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-3xl opacity-5 contact-icon-2"
+          transition={{ duration: 0 }}
           style={{ bottom: '20%', left: '15%' }}
         >
           📱
         </motion.div>
 
         <motion.div
-          className="absolute text-2xl opacity-5"
-          animate={{
-            x: [0, 40, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-2xl opacity-5 contact-icon-3"
+          transition={{ duration: 0 }}
           style={{ top: '60%', right: '10%' }}
         >
           💬
@@ -202,18 +142,8 @@ const Contact: React.FC = () => {
         {[...Array(4)].map((_, index) => (
           <motion.div
             key={index}
-            className="absolute w-20 h-0.5 bg-gradient-to-r from-blue-300/10 to-purple-300/10 dark:from-blue-500/5 dark:to-purple-500/5"
-            animate={{
-              scaleX: [0.5, 1.5, 0.5],
-              opacity: [0.1, 0.3, 0.1],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 6 + index,
-              repeat: Infinity,
-              delay: index * 1.5,
-              ease: "easeInOut"
-            }}
+            className={`absolute w-20 h-0.5 bg-gradient-to-r from-blue-300/10 to-purple-300/10 dark:from-blue-500/5 dark:to-purple-500/5 contact-line-${index + 1}`}
+            transition={{ duration: 0 }}
             style={{
               top: `${25 + index * 15}%`,
               left: `${80 - index * 5}%`,
@@ -224,16 +154,8 @@ const Contact: React.FC = () => {
 
         {/* Floating @ Symbol */}
         <motion.div
-          className="absolute text-6xl font-bold text-blue-200/5 dark:text-blue-400/3 select-none"
-          animate={{
-            rotate: [0, 180, 360],
-            scale: [0.8, 1.2, 0.8],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute text-6xl font-bold text-blue-200/5 dark:text-blue-400/3 select-none contact-at-symbol"
+          transition={{ duration: 0 }}
           style={{ top: '40%', left: '5%' }}
         >
           @
@@ -243,11 +165,11 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center mb-16 contact-header"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0 }}
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Get In Touch
@@ -258,11 +180,11 @@ const Contact: React.FC = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 contact-content"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0 }}
         >
           {/* Contact Info */}
           <div>
@@ -334,12 +256,12 @@ const Contact: React.FC = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className={`w-12 h-12 bg-gray-100 dark:bg-gray-700 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors contact-social-${index + 1}`}
                     aria-label={social.platform}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0 }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >

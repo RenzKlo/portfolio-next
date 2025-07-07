@@ -107,3 +107,177 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Contact page floating animations - CSS based for better mobile performance */
+@keyframes contact-float-1 {
+  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+  50% { transform: translateX(50px) translateY(-30px) scale(1.2); }
+}
+
+@keyframes contact-float-2 {
+  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+  50% { transform: translateX(-40px) translateY(60px) scale(0.8); }
+}
+
+@keyframes contact-bubble-1 {
+  0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+  50% { transform: translateX(20px) translateY(-40px) rotate(5deg); }
+}
+
+@keyframes contact-bubble-2 {
+  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+  50% { transform: translateX(-15px) translateY(30px) scale(1.1); }
+}
+
+@keyframes contact-icon-1 {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+}
+
+@keyframes contact-icon-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(15deg); }
+  66% { transform: translateY(0px) rotate(-15deg); }
+}
+
+@keyframes contact-icon-3 {
+  0%, 100% { transform: translateX(0px) scale(1); }
+  50% { transform: translateX(40px) scale(1.3); }
+}
+
+@keyframes contact-line-1 {
+  0%, 100% { transform: scaleX(0.5) rotate(0deg); opacity: 0.1; }
+  50% { transform: scaleX(1.5) rotate(5deg); opacity: 0.3; }
+}
+
+@keyframes contact-line-2 {
+  0%, 100% { transform: scaleX(0.5) rotate(0deg); opacity: 0.1; }
+  50% { transform: scaleX(1.5) rotate(5deg); opacity: 0.3; }
+}
+
+@keyframes contact-line-3 {
+  0%, 100% { transform: scaleX(0.5) rotate(0deg); opacity: 0.1; }
+  50% { transform: scaleX(1.5) rotate(5deg); opacity: 0.3; }
+}
+
+@keyframes contact-line-4 {
+  0%, 100% { transform: scaleX(0.5) rotate(0deg); opacity: 0.1; }
+  50% { transform: scaleX(1.5) rotate(5deg); opacity: 0.3; }
+}
+
+@keyframes contact-at-symbol {
+  0%, 100% { transform: rotate(0deg) scale(0.8); }
+  25% { transform: rotate(90deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  75% { transform: rotate(270deg) scale(1); }
+}
+
+/* Apply animations */
+.contact-float-1 {
+  animation: contact-float-1 15s ease-in-out infinite;
+}
+
+.contact-float-2 {
+  animation: contact-float-2 18s ease-in-out infinite;
+}
+
+.contact-bubble-1 {
+  animation: contact-bubble-1 12s ease-in-out infinite;
+}
+
+.contact-bubble-2 {
+  animation: contact-bubble-2 14s ease-in-out infinite;
+}
+
+.contact-icon-1 {
+  animation: contact-icon-1 20s linear infinite;
+}
+
+.contact-icon-2 {
+  animation: contact-icon-2 10s ease-in-out infinite;
+}
+
+.contact-icon-3 {
+  animation: contact-icon-3 16s ease-in-out infinite;
+}
+
+.contact-line-1 {
+  animation: contact-line-1 6s ease-in-out infinite;
+}
+
+.contact-line-2 {
+  animation: contact-line-2 7s ease-in-out infinite 1.5s;
+}
+
+.contact-line-3 {
+  animation: contact-line-3 8s ease-in-out infinite 3s;
+}
+
+.contact-line-4 {
+  animation: contact-line-4 9s ease-in-out infinite 4.5s;
+}
+
+.contact-at-symbol {
+  animation: contact-at-symbol 25s ease-in-out infinite;
+}
+
+/* Contact section animations */
+.contact-header {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(-20px);
+}
+
+.contact-header.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-content {
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+  transform: translateY(30px);
+}
+
+.contact-content.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-social-1 {
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transform: translateY(20px);
+}
+
+.contact-social-2 {
+  transition: opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s;
+  transform: translateY(20px);
+}
+
+.contact-social-3 {
+  transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+  transform: translateY(20px);
+}
+
+.contact-social-1.animate,
+.contact-social-2.animate,
+.contact-social-3.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Disable animations on mobile for better performance */
+@media (max-width: 768px) {
+  .contact-float-1,
+  .contact-float-2,
+  .contact-bubble-1,
+  .contact-bubble-2,
+  .contact-icon-1,
+  .contact-icon-2,
+  .contact-icon-3,
+  .contact-line-1,
+  .contact-line-2,
+  .contact-line-3,
+  .contact-line-4,
+  .contact-at-symbol {
+    animation: none;
+  }
+}
