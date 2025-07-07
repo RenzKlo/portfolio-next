@@ -88,62 +88,54 @@ const Contact: React.FC = () => {
       {/* Enhanced Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Communication Themed Floating Elements - Mobile Optimized */}
-        <motion.div
+        <div
           className="absolute w-32 h-32 bg-blue-200/10 dark:bg-blue-500/5 rounded-full contact-float-1"
-          transition={{ duration: 0 }}
           style={{ top: '20%', left: '10%' }}
         />
         
-        <motion.div
+        <div
           className="absolute w-24 h-24 bg-purple-200/10 dark:bg-purple-500/5 rounded-full contact-float-2"
-          transition={{ duration: 0 }}
           style={{ top: '30%', right: '15%' }}
         />
 
         {/* Message Bubbles */}
-        <motion.div
+        <div
           className="absolute w-16 h-12 bg-green-200/15 dark:bg-green-500/8 rounded-xl contact-bubble-1"
-          transition={{ duration: 0 }}
           style={{ top: '50%', left: '20%' }}
         />
 
-        <motion.div
+        <div
           className="absolute w-12 h-8 bg-blue-200/15 dark:bg-blue-500/8 rounded-lg contact-bubble-2"
-          transition={{ duration: 0 }}
           style={{ bottom: '30%', right: '25%' }}
         />
 
         {/* Floating Contact Icons */}
-        <motion.div
+        <div
           className="absolute text-4xl opacity-5 contact-icon-1"
-          transition={{ duration: 0 }}
           style={{ top: '15%', right: '20%' }}
         >
           📧
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           className="absolute text-3xl opacity-5 contact-icon-2"
-          transition={{ duration: 0 }}
           style={{ bottom: '20%', left: '15%' }}
         >
           📱
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           className="absolute text-2xl opacity-5 contact-icon-3"
-          transition={{ duration: 0 }}
           style={{ top: '60%', right: '10%' }}
         >
           💬
-        </motion.div>
+        </div>
 
         {/* Network Connection Lines */}
         {[...Array(4)].map((_, index) => (
-          <motion.div
+          <div
             key={index}
             className={`absolute w-20 h-0.5 bg-gradient-to-r from-blue-300/10 to-purple-300/10 dark:from-blue-500/5 dark:to-purple-500/5 contact-line-${index + 1}`}
-            transition={{ duration: 0 }}
             style={{
               top: `${25 + index * 15}%`,
               left: `${80 - index * 5}%`,
@@ -153,38 +145,49 @@ const Contact: React.FC = () => {
         ))}
 
         {/* Floating @ Symbol */}
-        <motion.div
+        <div
           className="absolute text-6xl font-bold text-blue-200/5 dark:text-blue-400/3 select-none contact-at-symbol"
-          transition={{ duration: 0 }}
           style={{ top: '40%', left: '5%' }}
         >
           @
-        </motion.div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16 contact-header"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.h2 
+            className="text-4xl font-bold text-gray-900 dark:text-white mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             Get In Touch
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             I&apos;m always open to discussing new opportunities, interesting projects, or just having a chat about technology.
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 contact-content"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           {/* Contact Info */}
           <div>
