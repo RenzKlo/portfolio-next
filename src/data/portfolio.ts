@@ -129,8 +129,20 @@ export const projects: Project[] = [
       "OpenStreetMap",
       "MongoDB",
     ],
-    imageUrl: "/images/project1.jpg",
-    buttons: [],
+    imageUrl: "/images/publink.png",
+    buttons: [{
+      label: "Source Code (Sample)",
+      url: "https://github.com/RenzKlo/publink-code-sample",
+      type: "primary",
+      icon: "github",
+    },
+    {
+      label: "Promotional Video",
+      url: "https://youtu.be/wzyD5KHnRbI",
+      type: "secondary",
+      icon: "play",
+    }
+    ],
     featured: true,
   },
   // Example with three buttons - primary, outline, and secondary
@@ -146,10 +158,10 @@ export const projects: Project[] = [
       "Node.js",
       "Langchain",
       "MongoDB",
-      "Express",
+      "Codeigniter",
       "Python",
     ],
-    imageUrl: "/images/project2.jpg",
+    imageUrl: "/images/chatbot.png",
     buttons: [],
     featured: true,
   },
@@ -162,7 +174,7 @@ export const projects: Project[] = [
     longDescription:
       "Created a comprehensive clinic management system with patient record management, appointment scheduling, medical history tracking, and reporting features. Built with Flutter for mobile access and NestJS for robust backend services.",
     technologies: ["Flutter", "NestJS", "TypeScript", "MongoDB"],
-    imageUrl: "/images/project3.jpg",
+    imageUrl: "/images/hinosa.png",
     buttons: [],
     featured: false,
   },
@@ -174,8 +186,16 @@ export const projects: Project[] = [
     longDescription:
       "A fully responsive portfolio website showcasing my projects and skills. Built with Next.js 15, TypeScript, Tailwind CSS, and Framer Motion for smooth animations.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    imageUrl: "/images/project4.jpg",
-    // No buttons array - buttons section will be hidden automatically
+    imageUrl: "/images/portfolio.png",
+    buttons: [
+      {
+        label: "Source Code",
+        url: "https://github.com/RenzKlo/portfolio-next",
+        type: "primary",
+        icon: "github",
+      },
+      
+    ],
     featured: false,
   },
 ];
