@@ -6,12 +6,14 @@ import { projects } from '@/data/portfolio';
 import { Project } from '@/types';
 import { createPortal } from 'react-dom';
 import ProjectButton from './ProjectButton';
+import Image from 'next/image';
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -21,6 +23,10 @@ const Projects: React.FC = () => {
   }, []);
 
   const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.featured);
+
+  const handleImageError = (projectId: string) => {
+    setImageErrors(prev => new Set(prev).add(projectId));
+  };
 
   const handleFilterChange = (newFilter: 'all' | 'featured') => {
     if (newFilter === filter) return;
@@ -296,16 +302,42 @@ const Projects: React.FC = () => {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-              {/* Project Image Placeholder */}
-              <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-600 relative overflow-hidden">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-white text-xl font-bold text-center px-4">
-                    {project.title}
-                  </h3>
-                </div>
+              {/* Project Image */}
+              <div className="h-48 relative overflow-hidden group">
+                {project.imageUrl && !imageErrors.has(project.id) ? (
+                  <>
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      onError={() => handleImageError(project.id)}
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    {/* Title overlay on hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <h3 className="text-white text-xl font-bold text-center px-4 bg-black/50 rounded-lg py-2">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Gradient fallback */}
+                    <div className="h-full bg-gradient-to-br from-blue-400 to-purple-600" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <h3 className="text-white text-xl font-bold text-center px-4">
+                        {project.title}
+                      </h3>
+                    </div>
+                  </>
+                )}
+                
                 {project.featured && (
-                  <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-medium z-10">
                     Featured
                   </div>
                 )}
@@ -397,10 +429,31 @@ const Projects: React.FC = () => {
                   {/* Scrollable Content */}
                   <div className="h-full overflow-y-auto">
                     {/* Project Image/Header */}
-                    <div className="relative h-48 md:h-56 lg:h-64 bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
-                      <h2 className="text-white text-2xl md:text-3xl font-bold text-center px-6">
-                        {selectedProject.title}
-                      </h2>
+                    <div className="relative h-48 md:h-56 lg:h-64">
+                      {selectedProject.imageUrl && !imageErrors.has(selectedProject.id) ? (
+                        <>
+                          <Image
+                            src={selectedProject.imageUrl}
+                            alt={selectedProject.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
+                          />
+                          <div className="absolute inset-0 bg-black/40" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <h2 className="text-white text-2xl md:text-3xl font-bold text-center px-6 z-10">
+                              {selectedProject.title}
+                            </h2>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="h-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
+                          <h2 className="text-white text-2xl md:text-3xl font-bold text-center px-6">
+                            {selectedProject.title}
+                          </h2>
+                        </div>
+                      )}
                     </div>
 
                     {/* Modal Content */}
